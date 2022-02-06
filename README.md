@@ -13,7 +13,6 @@
    - Result
    - Short impression on the match
    - Pictures
-- The main page is ***calendar*** showing the **recorded match days**
 
 ###Expected User:
 
@@ -28,7 +27,7 @@
 ###User Stories:
 
 - As a user, I want to be able to create a new team and add it to a list of temas
-- As a user, I want to be able to select a team and see the calendar for the team
-- As a user, I want to be able to select a day on the calendar and add match day information
+- As a user, I want to be able to select a team and check the dates with match for the team
+- As a user, I want to be able to select a day and add match day information
 - As a user, I want to be able to select a day and check the recorded match
 - As a user, I want to be able to list all the booked matches on the team
