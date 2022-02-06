@@ -1,10 +1,26 @@
-# My Personal Project
+# My Personal Project (Hansol Yang)
 
-## A subtitle
+## My Favourite Sports Team
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+###General Description on Project:
 
-An example of text with **bold** and *italic* fonts.  
+- Create a team page of users' ***favourite sports team***
+- Add ***match day*** on calendar
+- In ***'Add Match'*** page, user can add below:
+   - Date and Time
+   - Opposing Team
+   - Whether the user goes to stadium or not
+   - Result
+   - Short impression on the match
+   - Pictures
+- The main page is ***calendar*** showing the **recorded match days**
+
+###Expected User:
+
+- Sports fans who want to check and record about the matches
+- Sports fans who want to see when did they book tickets
+
+###Reason I am interested in this project:
+
+- I am a sports fan
+- In my experience, I need such application recording the match days easily
