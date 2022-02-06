@@ -12,7 +12,6 @@
    - Whether the user goes to stadium or not
    - Result
    - Short impression on the match
-   - Pictures
 
 ###Expected User:
 
