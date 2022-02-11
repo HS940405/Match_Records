@@ -20,7 +20,7 @@ public class Team {
     //REQUIREMENTS: result should be one of 'w', 'l' and 'n'
     //MODIFIES: this
     //EFFECTS: add Match to the selected date
-    public void addMatch(String date, int time, String oppTeam, boolean booking, String result, String impression) {
+    public void addMatch(String date, double time, String oppTeam, boolean booking, String result, String impression) {
 
         match = new Match(date);
 

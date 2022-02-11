@@ -102,7 +102,7 @@ public class TeamAction {
         System.out.println("Please input a date in a form of 'year-month-day'");
         selectedDate = input.next();
         System.out.println("Please input the match time in 4 numbers. ex) 5pm -> 1700");
-        int time = Integer.parseInt(input.next());
+        double time = Double.parseDouble(input.next());
         System.out.println("Please input the opposing team name without any spaces.");
         String oppTeam = input.next();
         input = new Scanner(System.in);

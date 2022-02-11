@@ -4,7 +4,7 @@ package model;
 public class Match {
 
     private final String date; //->to int year, int month, int date?
-    private int time;
+    private double time;
     private String opposingTeam;
     private boolean booking;
     private String result;
@@ -28,13 +28,13 @@ public class Match {
     }
 
     //EFFECTS: return match time
-    public int getTime() {
+    public double getTime() {
         return time;
     }
 
     //MODIFIES: this
     //EFFECTS: set match time as given integer
-    public void setTime(int time) {
+    public void setTime(double time) {
         this.time = time;
     }
 
