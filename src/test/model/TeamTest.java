@@ -67,6 +67,11 @@ public class TeamTest {
         assertEquals(0, team2.recordedMatch("2022-09-05"));
         assertEquals(-1, team2.recordedMatch("2021-09-05"));
 
+        team1.addMatch("2021-08-22", 1730, "Java", true, "w", "Buddy");
+        team1.matchToList();
+
+        assertEquals(2, team1.recordedMatch("2021-08-22"));
+
 
 
     }
