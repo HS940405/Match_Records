@@ -11,6 +11,7 @@ public class Match {
     private String impression;
 
     //constructor
+    //EFFECTS: create a new match instance with given date
     public Match(String date) {
         this.date = date;
         time = 0;

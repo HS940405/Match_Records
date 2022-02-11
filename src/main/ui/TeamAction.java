@@ -15,6 +15,7 @@ public class TeamAction {
 
 
     //constructor
+    //EFFECTS: call start function to start the console program
     public TeamAction() {
         start();
     }

@@ -11,6 +11,7 @@ public class Team {
     private Match match;
 
     //constructor
+    //EFFECTS: create a new team with given name
     public Team(String teamName) {
         this.teamName = teamName;
         match = null;
