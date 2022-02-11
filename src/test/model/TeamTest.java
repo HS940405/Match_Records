@@ -8,19 +8,21 @@ public class TeamTest {
 
     private Team team1;
     private Team team2;
+    private Team team3;
 
     @BeforeEach
     public void runBefore() {
         team1 = new Team("Hawks");
         team2 = new Team("Tigers");
+        team3 = new Team("Ants");
     }
 
     @Test
     public void testConstructor() {
-        Team team3 = new Team("Bulls");
-        assertEquals("Bulls", team3.getTeamName());
-        assertEquals(0, team3.getMatchList().size());
-        assertEquals(0, team3.getMatchDateList().size());
+        Team team4 = new Team("Bulls");
+        assertEquals("Bulls", team4.getTeamName());
+        assertEquals(0, team4.getMatchList().size());
+        assertEquals(0, team4.getMatchDateList().size());
     }
 
     @Test
@@ -72,7 +74,8 @@ public class TeamTest {
 
         assertEquals(2, team1.recordedMatch("2021-08-22"));
 
-
+        team3.setMatchDateList("2022-02-03");
+        assertEquals(-1, team3.recordedMatch("2022-02-03"));
 
     }
 

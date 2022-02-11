@@ -35,7 +35,7 @@ public class Team {
     //EFFECTS: add match to matchList and matchDataList
     public void matchToList() {
         matchList.add(match);
-        matchDateList.add(match.getDate());
+        setMatchDateList(match.getDate());
     }
 
     //EFFECTS: bring recorded match with a selected date
@@ -46,7 +46,6 @@ public class Team {
                     return matchList.indexOf(i);
                 }
             }
-            return -1;
         }
         return -1;
     }
@@ -80,5 +79,11 @@ public class Team {
     //EFFECTS: return the match
     public Match getMatch() {
         return match;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: add given date to matchDateList
+    public void setMatchDateList(String date) {
+        matchDateList.add(date);
     }
 }
