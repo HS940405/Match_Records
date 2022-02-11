@@ -49,13 +49,15 @@ public class TeamTest {
 
     @Test
     public void testRecordedMatch() {
-        team1.addMatch("2022-02-07", 1800, "Tigers", false, "w", null);
+        team1.addMatch("2022-02-07", 1800, "Tigers", false, "w", "");
+        team1.matchToList();
+        team1.addMatch("2006-05-07", 1300, "A H", true, "l", "");
         team1.matchToList();
 
-        assertEquals(0, team2.recordedMatch("2022-01-31").getTime());
-        assertEquals(team1.getMatch(), team1.recordedMatch("2022-02-07"));
-        assertEquals("Tigers", team1.recordedMatch("2022-02-07").getOpposingTeam());
-        assertEquals(0, team1.recordedMatch("2021-03-05").getTime());
+        assertEquals(0, team1.recordedMatch("2022-02-07"));
+        assertEquals(-1, team1.recordedMatch("2021-05-05"));
+        assertEquals(1, team1.recordedMatch("2006-05-07"));
+        assertEquals(-1, team2.recordedMatch("2022-09-05"));
 
     }
 

@@ -18,10 +18,10 @@ class MatchTest {
         Match match2 = new Match("2022-01-31");
         assertEquals("2022-01-31", match2.getDate());
         assertEquals(0, match2.getTime());
-        assertNull(match2.getOpposingTeam());
+        assertEquals("", match2.getOpposingTeam());
         assertFalse(match2.isBooking());
-        assertNull(match2.getResult());
-        assertNull(match2.getImpression());
+        assertEquals("", match2.getResult());
+        assertEquals("", match2.getImpression());
     }
 
     @Test
