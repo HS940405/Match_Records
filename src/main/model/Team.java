@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//Creates a team containing number of matches
 public class Team {
 
     //field

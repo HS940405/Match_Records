@@ -6,6 +6,7 @@ import model.Team;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Make the console works for team
 public class TeamAction {
 
     //fields
