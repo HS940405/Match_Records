@@ -1,13 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 //Creates a team containing number of matches
-public class Team {
+public class Team implements Writable {
 
     //field
     private final String teamName;
-    private final ArrayList<Match> matchList = new ArrayList<>();
+    private MatchList matchList;
     private final ArrayList<String> matchDateList = new ArrayList<>();
     private Match match;
 
@@ -15,6 +19,7 @@ public class Team {
     //EFFECTS: create a new team with given name
     public Team(String teamName) {
         this.teamName = teamName;
+        matchList = new MatchList(teamName);
         match = null;
     }
 
@@ -31,21 +36,24 @@ public class Team {
         match.setBooking(booking);
         match.setResult(result);
         match.setImpression(impression);
+
+        matchList.addMatch(match);
+        matchDateList.add(date);
     }
 
     //MODIFIES: this
     //EFFECTS: add match to matchList and matchDataList
     public void matchToList() {
-        matchList.add(match);
+        matchList.addMatch(match);
         setMatchDateList(match.getDate());
     }
 
     //EFFECTS: bring recorded match with a selected date
     public int recordedMatch(String date) {
         if (matchDateList.contains(date)) {
-            for (Match i : matchList) {
+            for (Match i : matchList.getMatchList()) {
                 if (i.getDate().equals(date)) {
-                    return matchList.indexOf(i);
+                    return matchList.getMatchList().indexOf(i);
                 }
             }
         }
@@ -55,7 +63,7 @@ public class Team {
     //EFFECTS: find all matches that booking is true, add them to a string and return the string
     public String allBookedMatch() {
         StringBuilder string = new StringBuilder();
-        for (Match i : matchList) {
+        for (Match i : matchList.getMatchList()) {
             if (i.isBooking()) {
                 string.append(i.getDate()).append("\n");
             }
@@ -70,7 +78,7 @@ public class Team {
 
     //EFFECTS: return the list of matches
     public ArrayList<Match> getMatchList() {
-        return matchList;
+        return matchList.getMatchList();
     }
 
     //EFFECTS: return the list of match days
@@ -87,5 +95,24 @@ public class Team {
     //EFFECTS: add given date to matchDateList
     public void setMatchDateList(String date) {
         matchDateList.add(date);
+    }
+
+    @Override
+    //EFFECTS: returns team as a JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("teamName", teamName);
+        json.put("matchList", matchesToJson());
+        return json;
+    }
+
+    //EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray matchesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Match match : matchList.getMatchList()) {
+            jsonArray.put(match.toJson());
+        }
+
+        return jsonArray;
     }
 }

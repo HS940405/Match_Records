@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Records a match information
-public class Match {
+public class Match implements Writable {
 
     private final String date; //->to int year, int month, int date?
     private double time;
@@ -19,6 +23,16 @@ public class Match {
         booking = false;
         result = "";
         impression = "";
+    }
+
+    //EFFECTS: create a new match instance with given date, time, team, booking status, result and impression
+    public Match(String date, double time, String oppTeam, boolean booking, String result, String impression) {
+        this.date = date;
+        this.time = time;
+        this.opposingTeam = oppTeam;
+        this.booking = booking;
+        this.result = result;
+        this.impression = impression;
     }
 
     //methods
@@ -82,5 +96,18 @@ public class Match {
     //EFFECTS: set impression as the given string
     public void setImpression(String impression) {
         this.impression = impression;
+    }
+
+    @Override
+    //EFFECTS: returns match as JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("date", date);
+        json.put("time", time);
+        json.put("opposingTeam", opposingTeam);
+        json.put("booking", booking);
+        json.put("result", result);
+        json.put("impression", impression);
+        return json;
     }
 }

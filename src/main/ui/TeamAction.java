@@ -1,8 +1,14 @@
 package ui;
 
 import model.Match;
+import model.MatchList;
 import model.Team;
+import model.TeamList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,14 +16,21 @@ import java.util.Scanner;
 public class TeamAction {
 
     //fields
+    private static final String JSON_STORE = "./data/team.json";
     private String selectedDate;
-    private final ArrayList<Team> teamList = new ArrayList<>();
-    private Scanner input = new Scanner(System.in);
-
+    private TeamList teamList = new TeamList();
+    private MatchList matchList;
+    private Team team;
+    private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private boolean keepGoing;
 
     //constructor
     //EFFECTS: call start function to start the console program
-    public TeamAction() {
+    public TeamAction() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         start();
     }
 
@@ -25,17 +38,28 @@ public class TeamAction {
     //REQUIRES: user input must be either "s" or "c"
     //EFFECTS: display menu, get user input and call corresponding methods(selectTeam for "s", createTeam for "c")
     public void start() {
-        System.out.println("Select Team or Create Team by typing 's' or 'c'");
-        String command = input.next();
-        System.out.println(command);
+        keepGoing = true;
+        String command = null;
+        input = new Scanner(System.in);
 
-        if (command.equals("c")) {
-            createTeam();
-        } else if (command.equals("s")) {
-            selectTeam();
-        } else {
-            System.out.println("Not valid Command. Please select 's' or 'c'");
+        while (keepGoing) {
+            System.out.println("Select Team or Create Team by typing 's' or 'c'. Otherwise, type 'q' for quit.");
+            command = input.next();
+
+            if (command.equals("c")) {
+                createTeam();
+            } else if (command.equals("s")) {
+                loadTeam();
+                selectTeam();
+            } else if (command.equals("q")) {
+                keepGoing = false;
+            } else {
+                System.out.println("Not valid Command. Please select 's' or 'c'");
+            }
         }
+
+        input = new Scanner(System.in);
+        System.out.println("\nGoodbye!");
     }
 
     //REQUIRES: teamName must be in one word
@@ -44,8 +68,9 @@ public class TeamAction {
     public void createTeam() {
         System.out.println("Team name(Team name should be in one word without spacing) : ");
         String teamName = input.next();
-        Team team = new Team(teamName);
-        teamList.add(team);
+        team = new Team(teamName);
+        teamList.addTeam(team);
+        saveTeam();
         String string = String.format("Team %s is created!", teamName);
         System.out.println(string);
         input = new Scanner(System.in);
@@ -62,38 +87,44 @@ public class TeamAction {
             System.out.println("Please input team name.");
             String selectedTeam = input.next();
             input = new Scanner(System.in);
-            for (Team i : teamList) {
-                if (i.getTeamName().equals(selectedTeam)) {
-                    runTeam(i);
-                    break;
+            if (teamList.getTeamNames().contains(selectedTeam)) {
+                for (Team i : teamList.getTeamList()) {
+                    if (i.getTeamName().equals(selectedTeam)) {
+                        runTeam(i);
+                        break;
+                    }
                 }
+            } else {
+                String string = String.format("There's no team called %s. Please choose another team.", selectedTeam);
+                System.out.println(string);
+                selectTeam();
             }
-
-            String string = String.format("There's no team called %s. Please choose another team.", selectedTeam);
-            System.out.println(string);
-            selectTeam();
         }
     }
 
-    //REQUIRES: user input must be one of "a", "c" and "b"
+    //REQUIRES: user input must be one of "a", "c", "b" and "q"
     //EFFECTS: display menu, get user input and call corresponding methods for the input
     public void runTeam(Team team) {
-        System.out.println("Select from:\n a -> add match\n c -> check match\n b -> check date that booked tickets");
+        boolean teamGoing = true;
+        System.out.println("Select from:\n a -> add match\n c -> check match\n b -> check booked tickets\n q -> quit");
         String command = input.next();
-        switch (command) {
-            case "a":
+        input = new Scanner(System.in);
+
+        while (teamGoing) {
+            if (command.equals("a")) {
                 addMatch(team);
-                break;
-            case "c":
+            } else if (command.equals("c")) {
                 checkMatch(team);
-                break;
-            case "b":
+            } else if (command.equals("b")) {
                 checkBooked(team);
-                break;
-            default:
-                System.out.println("Not valid Command. Please select 's' or 'c'");
+            } else if (command.equals("q")) {
+                saveTeam(team);
+                teamGoing = false;
+                start();
+            } else {
+                System.out.println("Not valid Command.");
                 runTeam(team);
-                break;
+            }
         }
     }
 
@@ -144,6 +175,43 @@ public class TeamAction {
         System.out.println(team.allBookedMatch());
 
         runTeam(team);
+    }
+
+    //MODIFIES: JSON_STORE
+    //EFFECTS: saves the team to file
+    private void saveTeam() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(teamList);
+            jsonWriter.close();
+            System.out.println("Saved " + team.getTeamName() + " to" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: JSON_STORE
+    //EFFECTS: saves the given team to file
+    private void saveTeam(Team team) {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(teamList);
+            jsonWriter.close();
+            System.out.println("Saved " + team.getTeamName() + " to" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads team from file
+    private void loadTeam() {
+        try {
+            teamList = jsonReader.readTeams();
+            System.out.println("Loaded Team List " + " from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }
