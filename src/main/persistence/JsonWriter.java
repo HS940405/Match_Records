@@ -12,7 +12,7 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destination;
 
-    //EFFECTS: constructs writer to write to destination file
+    //EFFECTS: constructs writer to write data to destination file
     public JsonWriter(String destination) {
         this.destination = destination;
     }

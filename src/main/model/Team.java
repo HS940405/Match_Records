@@ -9,7 +9,7 @@ import java.util.ArrayList;
 //Creates a team containing number of matches
 public class Team implements Writable {
 
-    //field
+    //fields
     private final String teamName;
     private MatchList matchList;
     private final ArrayList<String> matchDateList = new ArrayList<>();

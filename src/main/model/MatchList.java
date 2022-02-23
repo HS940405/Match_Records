@@ -5,7 +5,7 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 
-//Records matches in a team
+//Records matches in each team
 public class MatchList implements Writable {
 
     //fields

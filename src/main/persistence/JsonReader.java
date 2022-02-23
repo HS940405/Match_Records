@@ -1,7 +1,5 @@
 package persistence;
 
-import model.Match;
-import model.MatchList;
 import model.Team;
 import model.TeamList;
 import org.json.*;
