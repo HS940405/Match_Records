@@ -11,7 +11,7 @@ public class Team implements Writable {
 
     //fields
     private final String teamName;
-    private MatchList matchList;
+    private final MatchList matchList;
     private final ArrayList<String> matchDateList = new ArrayList<>();
     private Match match;
 
@@ -19,7 +19,7 @@ public class Team implements Writable {
     //EFFECTS: create a new team with given name
     public Team(String teamName) {
         this.teamName = teamName;
-        matchList = new MatchList(teamName);
+        matchList = new MatchList();
         match = null;
     }
 

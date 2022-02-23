@@ -9,24 +9,18 @@ import java.util.ArrayList;
 public class MatchList implements Writable {
 
     //fields
-    private String name;
-    private ArrayList<Match> matchList = new ArrayList<>();
+    private final ArrayList<Match> matchList;
 
     //constructor
     //EFFECTS: constructs a teamList
-    public MatchList(String name) {
-        this.name = name;
+    public MatchList() {
+        matchList = new ArrayList<>();
     }
 
     //MODIFIES: this
     //EFFECTS: add given match to the match list
     public void addMatch(Match match) {
         matchList.add(match);
-    }
-
-    //EFFECTS: return boolean showing whether the matchList is empty
-    public boolean isEmpty() {
-        return matchList.isEmpty();
     }
 
     //EFFECTS: return matchList

@@ -1,6 +1,5 @@
 package persistence;
 
-import model.MatchList;
 import model.TeamList;
 import org.json.JSONObject;
 
@@ -10,7 +9,7 @@ import java.io.*;
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
-    private String destination;
+    private final String destination;
 
     //EFFECTS: constructs writer to write data to destination file
     public JsonWriter(String destination) {
@@ -20,18 +19,13 @@ public class JsonWriter {
     //MODIFIES: this
     //EFFECTS: opens writer; throws FileNotFoundException if destination file cannot be opened for writing
     public void open() throws FileNotFoundException {
-        writer = new PrintWriter(new File(destination));
+        writer = new PrintWriter(destination);
     }
 
     //MODIFIES: this
     //EFFECTS: writes JSON representation of team to file
     public void write(TeamList teamList) {
         JSONObject json = teamList.toJson();
-        saveToFile(json.toString(TAB));
-    }
-
-    public void writeMatchList(MatchList matchList) {
-        JSONObject json = matchList.toJson();
         saveToFile(json.toString(TAB));
     }
 

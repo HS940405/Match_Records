@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class TeamList implements Writable {
 
     //fields
-    private ArrayList<Team> teamList = new ArrayList<>();
-    private ArrayList<String> teamNames = new ArrayList<>();
+    private final ArrayList<Team> teamList = new ArrayList<>();
+    private final ArrayList<String> teamNames = new ArrayList<>();
 
     //constructor
     //EFFECTS: constructs a teamList

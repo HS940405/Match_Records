@@ -1,7 +1,6 @@
 package ui;
 
 import model.Match;
-import model.MatchList;
 import model.Team;
 import model.TeamList;
 import persistence.JsonReader;
@@ -18,12 +17,10 @@ public class TeamAction {
     private static final String JSON_STORE = "./data/team.json";
     private String selectedDate;
     private TeamList teamList = new TeamList();
-    private MatchList matchList;
     private Team team;
     private Scanner input;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
-    private boolean keepGoing;
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
 
     //constructor
     //EFFECTS: call start function to start the console program
@@ -37,8 +34,8 @@ public class TeamAction {
     //REQUIRES: user input must be either "s" or "c"
     //EFFECTS: display menu, get user input and call corresponding methods(selectTeam for "s", createTeam for "c")
     public void start() {
-        keepGoing = true;
-        String command = null;
+        boolean keepGoing = true;
+        String command;
         input = new Scanner(System.in);
 
         while (keepGoing) {
