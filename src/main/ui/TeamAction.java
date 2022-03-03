@@ -16,17 +16,19 @@ public class TeamAction {
     //fields
     private static final String JSON_STORE = "./data/team.json";
     private String selectedDate;
-    private TeamList teamList = new TeamList();
-    private Team team;
-    private Scanner input;
+    private TeamList teamList;
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
+    private boolean keepGoing;
+    private boolean teamGoing;
 
     //constructor
     //EFFECTS: call start function to start the console program
     public TeamAction() throws FileNotFoundException {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        teamList = new TeamList();
+        loadTeam();
         start();
     }
 
@@ -34,13 +36,14 @@ public class TeamAction {
     //REQUIRES: user input must be either "s" or "c"
     //EFFECTS: display menu, get user input and call corresponding methods(selectTeam for "s", createTeam for "c")
     public void start() {
-        boolean keepGoing = true;
+        keepGoing = true;
         String command;
-        input = new Scanner(System.in);
 
         while (keepGoing) {
             System.out.println("Select Team or Create Team by typing 's' or 'c'. Otherwise, type 'q' for quit.");
+            Scanner input = new Scanner(System.in);
             command = input.next();
+            System.out.println(command);
 
             if (command.equals("c")) {
                 createTeam();
@@ -49,12 +52,13 @@ public class TeamAction {
                 selectTeam();
             } else if (command.equals("q")) {
                 keepGoing = false;
+                System.out.println(teamList);
+                saveTeam();
             } else {
                 System.out.println("Not valid Command. Please select 's' or 'c'");
             }
         }
 
-        input = new Scanner(System.in);
         System.out.println("\nGoodbye!");
     }
 
@@ -63,13 +67,13 @@ public class TeamAction {
     //EFFECTS: instantiate Team and add it to teamList
     public void createTeam() {
         System.out.println("Team name(Team name should be in one word without spacing) : ");
-        String teamName = input.next();
-        team = new Team(teamName);
+        Scanner teamInput = new Scanner(System.in);
+        String teamName = teamInput.next();
+        Team team = new Team(teamName);
         teamList.addTeam(team);
         saveTeam();
         String string = String.format("Team %s is created!", teamName);
         System.out.println(string);
-        input = new Scanner(System.in);
         start();
     }
 
@@ -81,8 +85,8 @@ public class TeamAction {
             start();
         } else {
             System.out.println("Please input team name.");
-            String selectedTeam = input.next();
-            input = new Scanner(System.in);
+            Scanner selectTeamInput = new Scanner(System.in);
+            String selectedTeam = selectTeamInput.next();
             if (teamList.getTeamNames().contains(selectedTeam)) {
                 for (Team i : teamList.getTeamList()) {
                     if (i.getTeamName().equals(selectedTeam)) {
@@ -101,10 +105,11 @@ public class TeamAction {
     //REQUIRES: user input must be one of "a", "c", "b" and "q"
     //EFFECTS: display menu, get user input and call corresponding methods for the input
     public void runTeam(Team team) {
-        boolean teamGoing = true;
+        teamGoing = true;
         System.out.println("Select from:\n a -> add match\n c -> check match\n b -> check booked tickets\n q -> quit");
-        String command = input.next();
-        input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        String command = scanner.next();
+        System.out.println(command);
 
         while (teamGoing) {
             if (command.equals("a")) {
@@ -114,7 +119,6 @@ public class TeamAction {
             } else if (command.equals("b")) {
                 checkBooked(team);
             } else if (command.equals("q")) {
-                saveTeam(team);
                 teamGoing = false;
                 start();
             } else {
@@ -128,22 +132,21 @@ public class TeamAction {
     //MODIFIES: Team
     //EFFECTS: get information of a match from user and create a match with given info.
     public void addMatch(Team team) {
+        Scanner matchInput = new Scanner(System.in);
         System.out.println("Please input a date in a form of 'year-month-day'");
-        selectedDate = input.next();
+        selectedDate = matchInput.next();
         System.out.println("Please input the match time in 4 numbers. ex) 5pm -> 1700");
-        double time = Double.parseDouble(input.next());
+        double time = Double.parseDouble(matchInput.next());
         System.out.println("Please input the opposing team name without any spaces.");
-        String oppTeam = input.next();
-        input = new Scanner(System.in);
+        String oppTeam = matchInput.next();
         System.out.println("Please input 'y' if you booked ticket for the match. Otherwise, input 'n'");
-        boolean booking = input.next().equals("y");
+        boolean booking = matchInput.next().equals("y");
         System.out.println("Please input the result.\n win -> w\n lose -> l\n not yet decided -> n");
-        String result = input.next();
+        String result = matchInput.next();
         System.out.println("Please input the impression if you have without any spaces. If not, please press 'n'");
-        String impression = input.next();
+        String impression = matchInput.next();
         team.addMatch(selectedDate, time, oppTeam, booking, result, impression);
         System.out.println("The match added!");
-        input = new Scanner(System.in);
 
         runTeam(team);
     }
@@ -152,7 +155,8 @@ public class TeamAction {
     //EFFECTS: get user input of a data, find match with given data, and display the match's info if exists
     public void checkMatch(Team team) {
         System.out.println("Please input a date in a form of 'year-month-day'");
-        selectedDate = input.next();
+        Scanner selectDateInput = new Scanner(System.in);
+        selectedDate = selectDateInput.next();
         if (team.recordedMatch(selectedDate) == -1) {
             System.out.println("There is no match on the selected date");
         } else {
@@ -179,7 +183,7 @@ public class TeamAction {
             jsonWriter.open();
             jsonWriter.write(teamList);
             jsonWriter.close();
-            System.out.println("Saved " + team.getTeamName() + " to" + JSON_STORE);
+            System.out.println("Saved data");
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }

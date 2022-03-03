@@ -1,28 +1,31 @@
 {
-    "teamNames": ["B"],
-    "teamList": [{
-        "teamName": "B",
-        "matchDateList": [
-            "2022-06-04",
-            "2004-05-06"
-        ],
-        "matchList": [
-            {
-                "result": "n",
-                "date": "2022-06-04",
+    "teamNames": [
+        "B",
+        "A",
+        "C"
+    ],
+    "teamList": [
+        {
+            "teamName": "B",
+            "matchDateList": [],
+            "matchList": []
+        },
+        {
+            "teamName": "A",
+            "matchDateList": [],
+            "matchList": []
+        },
+        {
+            "teamName": "C",
+            "matchDateList": ["2022-01-03"],
+            "matchList": [{
+                "date": "2022-01-03",
+                "result": "l",
                 "booking": true,
                 "impression": "n",
-                "time": 1800,
-                "opposingTeam": "K"
-            },
-            {
-                "result": "l",
-                "date": "2004-05-06",
-                "booking": false,
-                "impression": "hello",
-                "time": 1800,
-                "opposingTeam": "A"
-            }
-        ]
-    }]
+                "time": 1900,
+                "opposingTeam": "B"
+            }]
+        }
+    ]
 }
