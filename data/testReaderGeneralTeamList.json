@@ -1,0 +1,36 @@
+{
+  "teamNames": ["Hawks", "Tigers"],
+  "teamList": [{
+    "teamName": "Hawks",
+    "matchDateList": [
+      "2022-01-03",
+      "2003-06-11"
+    ],
+    "matchList": [
+      {
+        "result": "l",
+        "date": "2022-01-03",
+        "booking": true,
+        "impression": "n",
+        "time": 1800,
+        "opposingTeam": "A"
+      },
+      {
+        "result": "w",
+        "date": "2003-06-11",
+        "booking": false,
+        "impression": "hello",
+        "time": 1900,
+        "opposingTeam": "K"
+      }
+    ],
+    "match": {
+      "result": "w",
+      "date": "2003-06-11",
+      "booking": false,
+      "impression": "hello",
+      "time": 1900,
+      "opposingTeam": "K"
+    }
+  }]
+}

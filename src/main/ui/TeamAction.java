@@ -30,7 +30,7 @@ public class TeamAction {
         start();
     }
 
-    //methods
+    //method
     //REQUIRES: user input must be either "s" or "c"
     //EFFECTS: display menu, get user input and call corresponding methods(selectTeam for "s", createTeam for "c")
     public void start() {
@@ -142,7 +142,6 @@ public class TeamAction {
         System.out.println("Please input the impression if you have without any spaces. If not, please press 'n'");
         String impression = input.next();
         team.addMatch(selectedDate, time, oppTeam, booking, result, impression);
-        team.matchToList();
         System.out.println("The match added!");
         input = new Scanner(System.in);
 

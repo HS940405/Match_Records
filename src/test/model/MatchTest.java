@@ -25,6 +25,17 @@ class MatchTest {
     }
 
     @Test
+    public void testConstructorSecond() {
+        Match match3 = new Match("2001-02-04", 1900, "A", true, "w", "n");
+        assertEquals("2001-02-04", match3.getDate());
+        assertEquals(1900, match3.getTime());
+        assertEquals("A", match3.getOpposingTeam());
+        assertTrue(match3.isBooking());
+        assertEquals("w", match3.getResult());
+        assertEquals("n", match3.getImpression());
+    }
+
+    @Test
     public void testSet() {
         match1.setTime(2000);
         assertEquals(2000, match1.getTime());

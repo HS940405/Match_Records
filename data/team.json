@@ -1,0 +1,15 @@
+{
+    "teamNames": ["A"],
+    "teamList": [{
+        "teamName": "A",
+        "matchDateList": ["2022-01-03"],
+        "matchList": [{
+            "result": "l",
+            "date": "2022-01-03",
+            "booking": true,
+            "impression": "n",
+            "time": 1800,
+            "opposingTeam": "B"
+        }]
+    }]
+}

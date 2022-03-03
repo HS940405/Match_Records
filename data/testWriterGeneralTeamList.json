@@ -1,0 +1,18 @@
+{
+    "teamNames": [
+        "A",
+        "B"
+    ],
+    "teamList": [
+        {
+            "teamName": "A",
+            "matchDateList": [],
+            "matchList": []
+        },
+        {
+            "teamName": "B",
+            "matchDateList": [],
+            "matchList": []
+        }
+    ]
+}

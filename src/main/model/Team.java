@@ -13,14 +13,12 @@ public class Team implements Writable {
     private final String teamName;
     private final MatchList matchList;
     private final ArrayList<String> matchDateList = new ArrayList<>();
-    private Match match;
 
     //constructor
     //EFFECTS: create a new team with given name
     public Team(String teamName) {
         this.teamName = teamName;
         matchList = new MatchList();
-        match = null;
     }
 
     //methods
@@ -29,7 +27,7 @@ public class Team implements Writable {
     //EFFECTS: add Match to the selected date
     public void addMatch(String date, double time, String oppTeam, boolean booking, String result, String impression) {
 
-        match = new Match(date);
+        Match match = new Match(date);
 
         match.setTime(time);
         match.setOpposingTeam(oppTeam);
@@ -39,13 +37,6 @@ public class Team implements Writable {
 
         matchList.addMatch(match);
         matchDateList.add(date);
-    }
-
-    //MODIFIES: this
-    //EFFECTS: add match to matchList and matchDataList
-    public void matchToList() {
-        matchList.addMatch(match);
-        setMatchDateList(match.getDate());
     }
 
     //EFFECTS: bring recorded match with a selected date
@@ -84,11 +75,6 @@ public class Team implements Writable {
     //EFFECTS: return the list of match days
     public ArrayList<String> getMatchDateList() {
         return matchDateList;
-    }
-
-    //EFFECTS: return the match
-    public Match getMatch() {
-        return match;
     }
 
     //MODIFIES: this
