@@ -2,7 +2,8 @@
     "teamNames": [
         "B",
         "A",
-        "C"
+        "C",
+        "D"
     ],
     "teamList": [
         {
@@ -12,20 +13,32 @@
         },
         {
             "teamName": "A",
-            "matchDateList": [],
-            "matchList": []
+            "matchDateList": ["2022-04-06"],
+            "matchList": [{
+                "result": "l",
+                "date": "2022-04-06",
+                "booking": true,
+                "impression": "n",
+                "time": 1800,
+                "opposingTeam": "D"
+            }]
         },
         {
             "teamName": "C",
             "matchDateList": ["2022-01-03"],
             "matchList": [{
-                "date": "2022-01-03",
                 "result": "l",
+                "date": "2022-01-03",
                 "booking": true,
                 "impression": "n",
                 "time": 1900,
                 "opposingTeam": "B"
             }]
+        },
+        {
+            "teamName": "D",
+            "matchDateList": [],
+            "matchList": []
         }
     ]
 }

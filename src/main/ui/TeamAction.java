@@ -43,7 +43,6 @@ public class TeamAction {
             System.out.println("Select Team or Create Team by typing 's' or 'c'. Otherwise, type 'q' for quit.");
             Scanner input = new Scanner(System.in);
             command = input.next();
-            System.out.println(command);
 
             if (command.equals("c")) {
                 createTeam();
@@ -59,7 +58,6 @@ public class TeamAction {
             }
         }
 
-        System.out.println("\nGoodbye!");
     }
 
     //REQUIRES: teamName must be in one word
@@ -73,7 +71,6 @@ public class TeamAction {
         teamList.addTeam(team);
         saveTeam();
         String string = String.format("Team %s is created!", teamName);
-        System.out.println(string);
         start();
     }
 
@@ -96,7 +93,6 @@ public class TeamAction {
                 }
             } else {
                 String string = String.format("There's no team called %s. Please choose another team.", selectedTeam);
-                System.out.println(string);
                 selectTeam();
             }
         }
@@ -109,7 +105,6 @@ public class TeamAction {
         System.out.println("Select from:\n a -> add match\n c -> check match\n b -> check booked tickets\n q -> quit");
         Scanner scanner = new Scanner(System.in);
         String command = scanner.next();
-        System.out.println(command);
 
         while (teamGoing) {
             if (command.equals("a")) {
