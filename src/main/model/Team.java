@@ -1,9 +1,5 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import persistence.Writable;
-
 import java.util.ArrayList;
 
 //Creates a team containing number of matches

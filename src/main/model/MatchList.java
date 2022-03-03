@@ -1,8 +1,5 @@
 package model;
 
-import org.json.JSONObject;
-import persistence.Writable;
-
 import java.util.ArrayList;
 
 //Records matches in each team

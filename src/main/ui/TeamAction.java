@@ -189,19 +189,6 @@ public class TeamAction {
         }
     }
 
-    //MODIFIES: JSON_STORE
-    //EFFECTS: saves the given team to file
-    private void saveTeam(Team team) {
-        try {
-            jsonWriter.open();
-            jsonWriter.write(teamList);
-            jsonWriter.close();
-            System.out.println("Saved " + team.getTeamName() + " to" + JSON_STORE);
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
-        }
-    }
-
     //MODIFIES: this
     //EFFECTS: loads team from file
     private void loadTeam() {

@@ -1,8 +1,5 @@
 package model;
 
-import org.json.JSONObject;
-import persistence.Writable;
-
 //Records a match information
 public class Match {
 
