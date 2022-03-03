@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 //Records a match information
-public class Match implements Writable {
+public class Match {
 
     private final String date; //->to int year, int month, int date?
     private double time;
@@ -97,6 +97,7 @@ public class Match implements Writable {
         this.impression = impression;
     }
 
+    /*
     @Override
     //EFFECTS: returns match as JSON object
     public JSONObject toJson() {
@@ -109,4 +110,6 @@ public class Match implements Writable {
         json.put("impression", impression);
         return json;
     }
+
+     */
 }

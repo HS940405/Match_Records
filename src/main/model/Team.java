@@ -7,7 +7,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 
 //Creates a team containing number of matches
-public class Team implements Writable {
+public class Team {
 
     //fields
     private final String teamName;
@@ -83,6 +83,7 @@ public class Team implements Writable {
         matchDateList.add(date);
     }
 
+    /*
     @Override
     //EFFECTS: returns team as a JSON object
     public JSONObject toJson() {
@@ -92,7 +93,7 @@ public class Team implements Writable {
         return json;
     }
 
-    //EFFECTS: returns things in this workroom as a JSON array
+    //EFFECTS: returns things in this team as a JSON array
     private JSONArray matchesToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Match match : matchList.getMatchList()) {
@@ -101,4 +102,6 @@ public class Team implements Writable {
 
         return jsonArray;
     }
+
+     */
 }

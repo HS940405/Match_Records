@@ -64,4 +64,5 @@ public class JsonWriterTest extends JsonTest{
             fail("Exception should not have been thrown");
         }
     }
+
 }

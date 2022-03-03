@@ -6,7 +6,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 
 //Records matches in each team
-public class MatchList implements Writable {
+public class MatchList {
 
     //fields
     private final ArrayList<Match> matchList;
@@ -28,6 +28,7 @@ public class MatchList implements Writable {
         return matchList;
     }
 
+    /*
     @Override
     //EFFECTS: returns match list as JSON object
     public JSONObject toJson() {
@@ -35,4 +36,6 @@ public class MatchList implements Writable {
         json.put("matchList", matchList);
         return json;
     }
+
+     */
 }
