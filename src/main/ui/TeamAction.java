@@ -53,9 +53,12 @@ public class TeamAction {
                 keepGoing = false;
                 System.out.println(teamList);
                 saveTeam();
+                break;
             } else {
                 System.out.println("Not valid Command. Please select 's' or 'c'");
             }
+
+            System.out.println("Goodbye!");
         }
 
     }
@@ -105,7 +108,6 @@ public class TeamAction {
         System.out.println("Select from:\n a -> add match\n c -> check match\n b -> check booked tickets\n q -> quit");
         Scanner scanner = new Scanner(System.in);
         String command = scanner.next();
-
         while (teamGoing) {
             if (command.equals("a")) {
                 addMatch(team);
@@ -116,6 +118,7 @@ public class TeamAction {
             } else if (command.equals("q")) {
                 teamGoing = false;
                 start();
+                break;
             } else {
                 System.out.println("Not valid Command.");
                 runTeam(team);
