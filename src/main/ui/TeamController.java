@@ -1,5 +1,7 @@
-package model;
+package ui;
 
+import model.Team;
+import model.TeamList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 

@@ -1,8 +1,6 @@
 package ui;
 
-import jdk.nashorn.internal.scripts.JO;
 import model.Team;
-import model.TeamController;
 import model.exception.NoTeamException;
 
 import java.awt.*;
@@ -115,7 +113,6 @@ public class MainControllerUI extends JFrame  {
             String selectTeam = JOptionPane.showInputDialog(null,
                     "Input Team Name", "Select Team", JOptionPane.QUESTION_MESSAGE);
             try {
-                desktop.removeAll();
                 desktop.add(new TeamSelectUI(teamController.findTeam(selectTeam), MainControllerUI.this));
                 desktop.revalidate();
                 desktop.repaint();

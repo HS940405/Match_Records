@@ -84,4 +84,16 @@ public class TeamTest {
         assertEquals("", team2.allBookedMatch());
     }
 
+    @Test
+    public void testCheckMatch() {
+
+        team1.addMatch("2022-01-05", 1900, "Bulls", true, "w", null);
+        team1.addMatch("2022-03-02", 1600, "Phoenix", false, "l", "n");
+
+        assertEquals("There is no match on the selected date", team1.checkMatch("2022-01-04"));
+        assertEquals("\nMatch Info on 2022-01-05"+"\nTime: 1900.0" + "\nOpposing Team: Bulls" +
+                        "\nBooking: true" + "\nResult: w" + "\nImpression: null", team1.checkMatch("2022-01-05"));
+
+    }
+
 }

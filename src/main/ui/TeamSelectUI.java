@@ -41,6 +41,8 @@ public class TeamSelectUI extends JPanel {
             setLocation((parent.getWidth() - WIDTH) / 2, (parent.getHeight() - HEIGHT) / 2 + 100);
             setSize(WIDTH, HEIGHT);
             setVisible(true);
+
+
         }
     }
 
