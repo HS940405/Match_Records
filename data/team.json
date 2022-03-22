@@ -3,15 +3,16 @@
         "B",
         "A",
         "C",
-        "D"
+        "D",
+        "Almonds"
     ],
     "teamList": [
         {
             "teamName": "B",
             "matchDateList": ["2022-01-05"],
             "matchList": [{
-                "result": "l",
                 "date": "2022-01-05",
+                "result": "l",
                 "booking": false,
                 "impression": "n",
                 "time": 1800,
@@ -22,24 +23,33 @@
             "teamName": "A",
             "matchDateList": [
                 "2022-04-06",
-                "2022-03-05"
+                "2022-03-05",
+                "2022-03-21"
             ],
             "matchList": [
                 {
-                    "result": "l",
                     "date": "2022-04-06",
+                    "result": "l",
                     "booking": true,
                     "impression": "n",
                     "time": 1800,
                     "opposingTeam": "D"
                 },
                 {
-                    "result": "n",
                     "date": "2022-03-05",
+                    "result": "n",
                     "booking": true,
                     "impression": "n",
                     "time": 1900,
                     "opposingTeam": "K"
+                },
+                {
+                    "date": "2022-03-21",
+                    "result": "l",
+                    "booking": false,
+                    "impression": "So fun!",
+                    "time": 1800,
+                    "opposingTeam": "B"
                 }
             ]
         },
@@ -47,8 +57,8 @@
             "teamName": "C",
             "matchDateList": ["2022-01-03"],
             "matchList": [{
-                "result": "l",
                 "date": "2022-01-03",
+                "result": "l",
                 "booking": true,
                 "impression": "n",
                 "time": 1900,
@@ -57,6 +67,11 @@
         },
         {
             "teamName": "D",
+            "matchDateList": [],
+            "matchList": []
+        },
+        {
+            "teamName": "Almonds",
             "matchDateList": [],
             "matchList": []
         }

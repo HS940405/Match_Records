@@ -58,6 +58,21 @@ public class Team {
         return string.toString();
     }
 
+    //REQUIRES: user inputs must be without any spaces
+    // EFFECTS: get user input of a data, find match with given data, and display the match's info if exists
+    public String checkMatch(String date) {
+        if (recordedMatch(date) == -1) {
+            return "There is no match on the selected date";
+        } else {
+            Match onTheDay = getMatchList().get(recordedMatch(date));
+            String info = "\nMatch Info on " + date + "\nTime: " + onTheDay.getTime()
+                    + "\nOpposing Team: " + onTheDay.getOpposingTeam() + "\nBooking: " + onTheDay.isBooking()
+                    + "\nResult: " + onTheDay.getResult() + "\nImpression: " + onTheDay.getImpression();
+            System.out.println(info);
+            return info;
+        }
+    }
+
     //EFFECTS: return name of the team
     public String getTeamName() {
         return teamName;
