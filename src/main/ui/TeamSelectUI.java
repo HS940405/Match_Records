@@ -1,7 +1,7 @@
 package ui;
 
 import model.Team;
-import model.exception.NoTeamException;
+import ui.exception.NoTeamException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,9 +81,9 @@ public class TeamSelectUI extends JPanel {
                     "Input impression on the match", "Enter impression", JOptionPane.QUESTION_MESSAGE);
             if (date != null) {
                 if (booking.equals("y")) {
-                    team.addMatch(date, Double.valueOf(time), oppTeam, true, result, impression);
+                    team.addMatch(date, Double.parseDouble(time), oppTeam, true, result, impression);
                 } else {
-                    team.addMatch(date, Double.valueOf(time), oppTeam, false, result, impression);
+                    team.addMatch(date, Double.parseDouble(time), oppTeam, false, result, impression);
                 }
             }
         }

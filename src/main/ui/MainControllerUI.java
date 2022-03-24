@@ -1,7 +1,7 @@
 package ui;
 
 import model.Team;
-import model.exception.NoTeamException;
+import ui.exception.NoTeamException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

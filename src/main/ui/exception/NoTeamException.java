@@ -1,4 +1,4 @@
-package model.exception;
+package ui.exception;
 
 public class NoTeamException extends Exception {
     public NoTeamException() {
