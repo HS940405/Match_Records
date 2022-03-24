@@ -17,6 +17,9 @@ public class MainControllerUI extends JFrame  {
     private final JButton createBtn;
     private final JButton selectBtn;
 
+    private JTextField text;
+    private JLabel teamName;
+
     private TeamController teamController;
 
     public MainControllerUI() {
@@ -63,6 +66,7 @@ public class MainControllerUI extends JFrame  {
         JMenu loadMenu = new JMenu("Load");
         loadMenu.setMnemonic('L');
         addMenuItem(loadMenu, new LoadAction(), KeyStroke.getKeyStroke("control L"));
+        addMenuItem(loadMenu, new LoadMainAction(), KeyStroke.getKeyStroke("control Z"));
         menuBar.add(loadMenu);
 
         setJMenuBar(menuBar);
@@ -113,7 +117,15 @@ public class MainControllerUI extends JFrame  {
             String selectTeam = JOptionPane.showInputDialog(null,
                     "Input Team Name", "Select Team", JOptionPane.QUESTION_MESSAGE);
             try {
+                setTitle(selectTeam);
+                desktop.removeAll();
                 desktop.add(new TeamSelectUI(teamController.findTeam(selectTeam), MainControllerUI.this));
+                teamName = new JLabel(selectTeam);
+                teamName.setLocation(10, 10);
+                teamName.setFont(new Font("Monospaced", Font.BOLD, 20));
+                teamName.setSize(100,20);
+                desktop.add(teamName);
+                setVisible(true);
                 desktop.revalidate();
                 desktop.repaint();
             } catch (NoTeamException e) {
@@ -146,6 +158,17 @@ public class MainControllerUI extends JFrame  {
             teamController.loadTeamList();
             JOptionPane.showMessageDialog(null, "Data Loaded", "Load Data",
                     JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private class LoadMainAction extends AbstractAction {
+        LoadMainAction() {
+            super("Load Main Page");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            new MainControllerUI();
         }
     }
 

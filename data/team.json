@@ -4,7 +4,8 @@
         "A",
         "C",
         "D",
-        "Almonds"
+        "Almonds",
+        "Red"
     ],
     "teamList": [
         {
@@ -38,7 +39,8 @@
                 "2022-04-06",
                 "2022-03-05",
                 "2022-03-21",
-                "2022-03-22"
+                "2022-03-22",
+                "2022-03-24"
             ],
             "matchList": [
                 {
@@ -72,6 +74,14 @@
                     "impression": "n",
                     "time": 1900,
                     "opposingTeam": "MustBeB"
+                },
+                {
+                    "date": "2022-03-24",
+                    "result": "n",
+                    "booking": false,
+                    "impression": "hello",
+                    "time": 1900,
+                    "opposingTeam": "B"
                 }
             ]
         },
@@ -96,6 +106,18 @@
             "teamName": "Almonds",
             "matchDateList": [],
             "matchList": []
+        },
+        {
+            "teamName": "Red",
+            "matchDateList": ["2022-03-04"],
+            "matchList": [{
+                "date": "2022-03-04",
+                "result": "n",
+                "booking": true,
+                "impression": "!!!",
+                "time": 1800,
+                "opposingTeam": "Velvet"
+            }]
         }
     ]
 }

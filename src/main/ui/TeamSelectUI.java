@@ -14,7 +14,6 @@ public class TeamSelectUI extends JPanel {
     private JButton bookBtn;
     private static final int WIDTH = 500;
     private static final int HEIGHT = 50;
-    private JTextField teamName;
 
     private Team team;
 
@@ -26,23 +25,18 @@ public class TeamSelectUI extends JPanel {
         } else {
             this.team = team;
 
-            teamName = new JTextField(team.getTeamName());
-            teamName.setEditable(false);
-            teamName.setLocation(10, 10);
-            setVisible(true);
-
             setButtons();
             JPanel selectArea = new JPanel();
             selectArea.add(addBtn);
             selectArea.add(checkBtn);
             selectArea.add(bookBtn);
-            add(selectArea, BorderLayout.AFTER_LAST_LINE);
-            selectArea.setLocation((parent.getWidth() - 300) / 2, (parent.getHeight() - 50) / 2 - 50);
-            setLocation((parent.getWidth() - WIDTH) / 2, (parent.getHeight() - HEIGHT) / 2 + 100);
+            add(selectArea, BorderLayout.CENTER);
+            setLocation((parent.getWidth() - WIDTH) / 2, (parent.getHeight() - HEIGHT) / 2);
             setSize(WIDTH, HEIGHT);
+            setBackground(Color.ORANGE);
+            selectArea.setBackground(Color.ORANGE);
+
             setVisible(true);
-
-
         }
     }
 
