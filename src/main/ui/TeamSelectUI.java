@@ -7,8 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//creates UI of the Team
 public class TeamSelectUI extends JPanel {
 
+    //fields
     private JButton addBtn;
     private JButton checkBtn;
     private JButton bookBtn;
@@ -17,6 +19,8 @@ public class TeamSelectUI extends JPanel {
 
     private Team team;
 
+    //constructor
+    //EFFECTS: create TeamSelectUI
     public TeamSelectUI(Team team, Component parent) throws NoTeamException {
         super();
 
@@ -40,21 +44,21 @@ public class TeamSelectUI extends JPanel {
         }
     }
 
+    //MODIFIES: addBtn, checkBtn, bookBtn
+    //EFFECTS: set buttons required for the team UI
     private void setButtons() {
         addBtn = new JButton(new AddMatchAction());
         checkBtn = new JButton(new CheckMatchAction());
         bookBtn = new JButton(new BookedMatchAction());
     }
 
-    public String getTeamName() {
-        return team.getTeamName();
-    }
-
+    //creates AddMatchAction
     private class AddMatchAction extends AbstractAction {
         AddMatchAction() {
             super("Add Match");
         }
 
+        //EFFECTS: create match to this.team with consumed information
         @Override
         public void actionPerformed(ActionEvent evt) {
             String date = JOptionPane.showInputDialog(null,
@@ -83,11 +87,13 @@ public class TeamSelectUI extends JPanel {
         }
     }
 
+    //creates CheckMatchAction
     private class CheckMatchAction extends AbstractAction {
         CheckMatchAction() {
             super("Check Match");
         }
 
+        //EFFECTS: find the match at given date
         @Override
         public void actionPerformed(ActionEvent evt) {
             String date = JOptionPane.showInputDialog(null,
@@ -98,11 +104,13 @@ public class TeamSelectUI extends JPanel {
         }
     }
 
+    //creates BookedMatchAction
     private class BookedMatchAction extends AbstractAction {
         BookedMatchAction() {
             super("Check All Booked Match");
         }
 
+        //EFFECTS: show all the booked matches in this.team
         @Override
         public void actionPerformed(ActionEvent evt) {
             JOptionPane.showMessageDialog(null, team.allBookedMatch(), "Booked Matches",

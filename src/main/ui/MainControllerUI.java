@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+//Main UI
 public class MainControllerUI extends JFrame  {
 
     private static final int WIDTH = 800;
@@ -17,11 +18,13 @@ public class MainControllerUI extends JFrame  {
     private final JButton createBtn;
     private final JButton selectBtn;
 
-    private JTextField text;
     private JLabel teamName;
+    private JLabel showBooking;
 
     private TeamController teamController;
 
+    //constructor
+    //EFFECTS: constructs Main UI
     public MainControllerUI() {
         teamController = new TeamController();
 
@@ -45,6 +48,8 @@ public class MainControllerUI extends JFrame  {
         centreOnScreen();
     }
 
+    //MODIFIES: desktop
+    //EFFECTS: add Buttons to JDesktopPane
     private void addButtons() {
         JPanel buttonArea = new JPanel();
         buttonArea.add(createBtn);
@@ -57,6 +62,8 @@ public class MainControllerUI extends JFrame  {
         buttonArea.setLocation((WIDTH - 300) / 2, (HEIGHT - 100) / 2);
     }
 
+    //MODIFIES: desktop
+    //EFFECTS: add menus to JDesktopPane
     private void addMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu saveMenu = new JMenu("Save");
@@ -73,6 +80,8 @@ public class MainControllerUI extends JFrame  {
         setVisible(true);
     }
 
+    //MODIFIES: menu
+    //EFFECTS: add menu items to menu
     private void addMenuItem(JMenu menu, AbstractAction action, KeyStroke accelerator) {
         JMenuItem menuItem = new JMenuItem(action);
         menuItem.setMnemonic(menuItem.getText().charAt(0));
@@ -80,21 +89,36 @@ public class MainControllerUI extends JFrame  {
         menu.add(menuItem);
     }
 
+    //EFFECTS: set desktop to centre of the screen
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
         int height = Toolkit.getDefaultToolkit().getScreenSize().height;
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
+    //EFFECTS: check whether the given team has booked match
+    private boolean hasBooking(Team team) {
+        return team.allBookedMatch().length() != 0;
+    }
+
+    //EFFECTS: set location and size properties of given JLabel
+    private void setJLabel(JLabel label, int locX, int locY, int sizeX, int sizeY) {
+        label.setLocation(locX, locY);
+        label.setSize(sizeX, sizeY);
+    }
+
+    //EFFECTS: create MainControllerUI instance
     public static void main(String[] args) {
         new MainControllerUI();
     }
 
+    //creates CreateTeamAction
     private class CreateTeamAction extends AbstractAction {
         CreateTeamAction() {
             super("Create Team");
         }
 
+        //EFFECTS: get team name input and create team
         @Override
         public void actionPerformed(ActionEvent evt) {
             String createTeam = JOptionPane.showInputDialog(null,
@@ -107,24 +131,30 @@ public class MainControllerUI extends JFrame  {
         }
     }
 
+    //creates SelectTeamAction
     private class SelectTeamAction extends AbstractAction {
         SelectTeamAction() {
             super("Select Team");
         }
 
+        //EFFECTS: create TeamSelectUI with a Team that matches the consumed team name
         @Override
         public void actionPerformed(ActionEvent evt) {
             String selectTeam = JOptionPane.showInputDialog(null,
                     "Input Team Name", "Select Team", JOptionPane.QUESTION_MESSAGE);
             try {
-                setTitle(selectTeam);
                 desktop.removeAll();
                 desktop.add(new TeamSelectUI(teamController.findTeam(selectTeam), MainControllerUI.this));
                 teamName = new JLabel(selectTeam);
-                teamName.setLocation(10, 10);
+                setJLabel(teamName, 10, 10, 100, 20);
                 teamName.setFont(new Font("Monospaced", Font.BOLD, 20));
-                teamName.setSize(100,20);
                 desktop.add(teamName);
+                if (hasBooking(teamController.findTeam(selectTeam))) {
+                    showBooking = new JLabel(new ImageIcon("src/main/ui/image/Star.jpg"));
+                    setJLabel(showBooking, 10,40,30,30);
+                    desktop.add(showBooking);
+                }
+                setTitle(selectTeam);
                 setVisible(true);
                 desktop.revalidate();
                 desktop.repaint();
@@ -135,11 +165,13 @@ public class MainControllerUI extends JFrame  {
         }
     }
 
+    //creates SaveAction
     private class SaveAction extends AbstractAction {
         SaveAction() {
             super("Save Data");
         }
 
+        //EFFECTS: save the current information
         @Override
         public void actionPerformed(ActionEvent evt) {
             teamController.saveTeamList();
@@ -148,11 +180,13 @@ public class MainControllerUI extends JFrame  {
         }
     }
 
+    //creates LoadAction
     private class LoadAction extends AbstractAction {
         LoadAction() {
             super("Load Data");
         }
 
+        //EFFECTS: load the teams saved
         @Override
         public void actionPerformed(ActionEvent evt) {
             teamController.loadTeamList();
@@ -161,11 +195,13 @@ public class MainControllerUI extends JFrame  {
         }
     }
 
+    //creates LoadMainAction
     private class LoadMainAction extends AbstractAction {
         LoadMainAction() {
             super("Load Main Page");
         }
 
+        //EFFECTS: go to the first set of MainControllerUI
         @Override
         public void actionPerformed(ActionEvent evt) {
             new MainControllerUI();
