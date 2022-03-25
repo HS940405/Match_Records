@@ -96,15 +96,21 @@ public class MainControllerUI extends JFrame  {
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
-    //EFFECTS: check whether the given team has booked match
-    private boolean hasBooking(Team team) {
-        return team.allBookedMatch().length() != 0;
-    }
-
     //EFFECTS: set location and size properties of given JLabel
     private void setJLabel(JLabel label, int locX, int locY, int sizeX, int sizeY) {
         label.setLocation(locX, locY);
         label.setSize(sizeX, sizeY);
+    }
+
+    //EFFECTS: add consumed ImageIcon to desktop as much as the the number of the bookings in given team
+    private void addImage(int count, ImageIcon img) {
+        for (int i = 0; i < count; i++) {
+            JLabel label = new JLabel(img);
+            setJLabel(label, 10 + (i * 20), 40, 20, 20);
+            desktop.add(label);
+            label.revalidate();
+            label.repaint();
+        }
     }
 
     //EFFECTS: create MainControllerUI instance
@@ -149,11 +155,8 @@ public class MainControllerUI extends JFrame  {
                 setJLabel(teamName, 10, 10, 100, 20);
                 teamName.setFont(new Font("Monospaced", Font.BOLD, 20));
                 desktop.add(teamName);
-                if (hasBooking(teamController.findTeam(selectTeam))) {
-                    showBooking = new JLabel(new ImageIcon("src/main/ui/image/Star.jpg"));
-                    setJLabel(showBooking, 10,40,30,30);
-                    desktop.add(showBooking);
-                }
+                addImage(teamController.findTeam(selectTeam).countBooking(),
+                        new ImageIcon("src/main/ui/image/Star.jpg"));
                 setTitle(selectTeam);
                 setVisible(true);
                 desktop.revalidate();

@@ -73,6 +73,16 @@ public class Team {
         }
     }
 
+    public int countBooking() {
+        int count = 0;
+        for (Match i : matchList.getMatchList()) {
+            if (i.isBooking()) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
     //EFFECTS: return name of the team
     public String getTeamName() {
         return teamName;

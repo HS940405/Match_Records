@@ -96,4 +96,15 @@ public class TeamTest {
 
     }
 
+    @Test
+    public void testCountBooking() {
+        assertEquals(0, team1.countBooking());
+        team1.addMatch("2022-01-05", 1900, "Bulls", true, "w", null);
+        assertEquals(1, team1.countBooking());
+        team1.addMatch("2022-03-02", 1600, "Phoenix", false, "l", "n");
+        assertEquals(1, team1.countBooking());
+        team1.addMatch("2022-03-09", 1600, "Phoenix", true, "l", "n");
+        assertEquals(2, team1.countBooking());
+    }
+
 }
