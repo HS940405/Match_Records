@@ -70,7 +70,7 @@ public class Team {
             Match onTheDay = getMatchList().get(recordedMatch(date));
             String info = "\nMatch Info on " + date + "\nTime: " + onTheDay.getTime()
                     + "\nOpposing Team: " + onTheDay.getOpposingTeam() + "\nBooking: " + onTheDay.isBooking()
-                    + "\nResult: " + onTheDay.getResult() + "\nImpression: " + onTheDay.getImpression();
+                    + "\nResult: " + onTheDay.getResult() + "\nImpression: " + onTheDay.getImpression() + "\n";
             System.out.println(info);
             return info;
         }

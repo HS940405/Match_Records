@@ -92,7 +92,7 @@ public class TeamTest {
 
         assertEquals("There is no match on the selected date", team1.checkMatch("2022-01-04"));
         assertEquals("\nMatch Info on 2022-01-05"+"\nTime: 1900.0" + "\nOpposing Team: Bulls" +
-                        "\nBooking: true" + "\nResult: w" + "\nImpression: null", team1.checkMatch("2022-01-05"));
+                        "\nBooking: true" + "\nResult: w" + "\nImpression: null\n", team1.checkMatch("2022-01-05"));
 
     }
 

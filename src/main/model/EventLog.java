@@ -20,7 +20,7 @@ public class EventLog implements Iterable<Event> {
      * (Singleton Design Pattern).
      */
     private EventLog() {
-        events = new ArrayList<Event>();
+        events = new ArrayList<>();
     }
 
     /**
@@ -43,7 +43,7 @@ public class EventLog implements Iterable<Event> {
     public void logEvent(Event e) {
         events.add(e);
     }
-    
+
     /**
      * Clears the event log and logs the event.
      */

@@ -24,6 +24,7 @@ public class TeamList implements Writable {
     public void addTeam(Team team) {
         teamList.add(team);
         teamNames.add(team.getTeamName());
+        EventLog.getInstance().logEvent(new Event("Added a Team " + team.getTeamName()));
     }
 
     //EFFECTS: return true if the teamList is empty; false otherwise

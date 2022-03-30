@@ -6,8 +6,6 @@ import ui.exception.NoTeamException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
@@ -20,9 +18,6 @@ public class MainControllerUI extends JFrame {
 
     private final JButton createBtn;
     private final JButton selectBtn;
-
-    private JLabel teamName;
-    private JLabel showBooking;
 
     private TeamController teamController;
 
@@ -79,8 +74,8 @@ public class MainControllerUI extends JFrame {
         addMenuItem(loadMenu, new LoadMainAction(), KeyStroke.getKeyStroke("control Z"));
         menuBar.add(loadMenu);
         JMenu logMenu = new JMenu("Log");
-        addMenuItem(logMenu, new ShowLogAction(), KeyStroke.getKeyStroke("control H"));
-        addMenuItem(logMenu, new ClearLogAction(), KeyStroke.getKeyStroke("control A"));
+        addMenuItem(logMenu, new ShowLogAction(), null);
+        addMenuItem(logMenu, new ClearLogAction(), null);
         menuBar.add(logMenu);
 
         setJMenuBar(menuBar);
@@ -120,10 +115,18 @@ public class MainControllerUI extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: exit the program and print the log in console
     @Override
     public void dispose() {
         ConsolePrinter cp = new ConsolePrinter();
         cp.printLog(EventLog.getInstance());
+        super.dispose();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: exit the program without printing the log
+    public void dispose(ActionEvent evt) {
         super.dispose();
     }
 
@@ -165,7 +168,7 @@ public class MainControllerUI extends JFrame {
             try {
                 desktop.removeAll();
                 desktop.add(new TeamSelectUI(teamController.findTeam(selectTeam), MainControllerUI.this));
-                teamName = new JLabel(selectTeam);
+                JLabel teamName = new JLabel(selectTeam);
                 setJLabel(teamName, 10, 10, 100, 20);
                 teamName.setFont(new Font("Monospaced", Font.BOLD, 20));
                 desktop.add(teamName);
@@ -221,15 +224,19 @@ public class MainControllerUI extends JFrame {
         //EFFECTS: go to the first set of MainControllerUI
         @Override
         public void actionPerformed(ActionEvent evt) {
+            dispose(evt);
             new MainControllerUI();
         }
     }
 
+    //creates ShowLogAction
     private class ShowLogAction extends AbstractAction {
         ShowLogAction() {
             super("Print log");
         }
 
+        //MODIFIES: this
+        //EFFECTS: create ScreenPrinter(ScrollPane for EventLog) and print log
         @Override
         public void actionPerformed(ActionEvent evt) {
             LogPrinter lp;
@@ -239,11 +246,14 @@ public class MainControllerUI extends JFrame {
         }
     }
 
+    //creates ClearLogAction
     private class ClearLogAction extends AbstractAction {
         ClearLogAction() {
             super("Clear log");
         }
 
+        //MODIFIES: this, lp
+        //EFFECTS: clear all the log in lp
         @Override
         public void actionPerformed(ActionEvent evt) {
             EventLog.getInstance().clear();
