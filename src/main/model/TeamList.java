@@ -9,12 +9,14 @@ import java.util.ArrayList;
 public class TeamList implements Writable {
 
     //fields
-    private final ArrayList<Team> teamList = new ArrayList<>();
-    private final ArrayList<String> teamNames = new ArrayList<>();
+    private final ArrayList<Team> teamList;
+    private final ArrayList<String> teamNames;
 
     //constructor
     //EFFECTS: constructs a teamList
     public TeamList() {
+        teamList = new ArrayList<>();
+        teamNames = new ArrayList<>();
     }
 
     //MODIFIES: this

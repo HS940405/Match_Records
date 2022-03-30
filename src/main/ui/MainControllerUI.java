@@ -1,15 +1,18 @@
 package ui;
 
 import model.Team;
+import model.EventLog;
 import ui.exception.NoTeamException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
 //Main UI
-public class MainControllerUI extends JFrame  {
+public class MainControllerUI extends JFrame {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
@@ -28,7 +31,7 @@ public class MainControllerUI extends JFrame  {
     public MainControllerUI() {
         teamController = new TeamController();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         createBtn = new JButton("Create Team");
         selectBtn = new JButton("Select Team");
@@ -75,6 +78,10 @@ public class MainControllerUI extends JFrame  {
         addMenuItem(loadMenu, new LoadAction(), KeyStroke.getKeyStroke("control L"));
         addMenuItem(loadMenu, new LoadMainAction(), KeyStroke.getKeyStroke("control Z"));
         menuBar.add(loadMenu);
+        JMenu logMenu = new JMenu("Log");
+        addMenuItem(logMenu, new ShowLogAction(), KeyStroke.getKeyStroke("control H"));
+        addMenuItem(logMenu, new ClearLogAction(), KeyStroke.getKeyStroke("control A"));
+        menuBar.add(logMenu);
 
         setJMenuBar(menuBar);
         setVisible(true);
@@ -111,6 +118,13 @@ public class MainControllerUI extends JFrame  {
             label.revalidate();
             label.repaint();
         }
+    }
+
+    @Override
+    public void dispose() {
+        ConsolePrinter cp = new ConsolePrinter();
+        cp.printLog(EventLog.getInstance());
+        super.dispose();
     }
 
     //EFFECTS: create MainControllerUI instance
@@ -211,5 +225,29 @@ public class MainControllerUI extends JFrame  {
         }
     }
 
+    private class ShowLogAction extends AbstractAction {
+        ShowLogAction() {
+            super("Print log");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            LogPrinter lp;
+            lp = new ScreenPrinter(MainControllerUI.this);
+            desktop.add((ScreenPrinter) lp);
+            lp.printLog(EventLog.getInstance());
+        }
+    }
+
+    private class ClearLogAction extends AbstractAction {
+        ClearLogAction() {
+            super("Clear log");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            EventLog.getInstance().clear();
+        }
+    }
 
 }

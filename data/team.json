@@ -5,7 +5,8 @@
         "C",
         "D",
         "Almonds",
-        "Red"
+        "Red",
+        "Buzz"
     ],
     "teamList": [
         {
@@ -16,16 +17,16 @@
             ],
             "matchList": [
                 {
-                    "date": "2022-01-05",
                     "result": "l",
+                    "date": "2022-01-05",
                     "booking": false,
                     "impression": "n",
                     "time": 1800,
                     "opposingTeam": "A"
                 },
                 {
-                    "date": "2022-02-05",
                     "result": "n",
+                    "date": "2022-02-05",
                     "booking": false,
                     "impression": "n",
                     "time": 1600,
@@ -44,40 +45,40 @@
             ],
             "matchList": [
                 {
-                    "date": "2022-04-06",
                     "result": "l",
+                    "date": "2022-04-06",
                     "booking": true,
                     "impression": "n",
                     "time": 1800,
                     "opposingTeam": "D"
                 },
                 {
-                    "date": "2022-03-05",
                     "result": "n",
+                    "date": "2022-03-05",
                     "booking": true,
                     "impression": "n",
                     "time": 1900,
                     "opposingTeam": "K"
                 },
                 {
-                    "date": "2022-03-21",
                     "result": "l",
+                    "date": "2022-03-21",
                     "booking": false,
                     "impression": "So fun!",
                     "time": 1800,
                     "opposingTeam": "B"
                 },
                 {
-                    "date": "2022-03-22",
                     "result": "n",
+                    "date": "2022-03-22",
                     "booking": true,
                     "impression": "n",
                     "time": 1900,
                     "opposingTeam": "MustBeB"
                 },
                 {
-                    "date": "2022-03-24",
                     "result": "n",
+                    "date": "2022-03-24",
                     "booking": false,
                     "impression": "hello",
                     "time": 1900,
@@ -89,8 +90,8 @@
             "teamName": "C",
             "matchDateList": ["2022-01-03"],
             "matchList": [{
-                "date": "2022-01-03",
                 "result": "l",
+                "date": "2022-01-03",
                 "booking": true,
                 "impression": "n",
                 "time": 1900,
@@ -111,12 +112,24 @@
             "teamName": "Red",
             "matchDateList": ["2022-03-04"],
             "matchList": [{
-                "date": "2022-03-04",
                 "result": "n",
+                "date": "2022-03-04",
                 "booking": true,
                 "impression": "!!!",
                 "time": 1800,
                 "opposingTeam": "Velvet"
+            }]
+        },
+        {
+            "teamName": "Buzz",
+            "matchDateList": ["2022-03-05"],
+            "matchList": [{
+                "result": "l",
+                "date": "2022-03-05",
+                "booking": true,
+                "impression": "n",
+                "time": 1900,
+                "opposingTeam": "Galaxy"
             }]
         }
     ]

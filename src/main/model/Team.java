@@ -33,6 +33,7 @@ public class Team {
 
         matchList.addMatch(match);
         matchDateList.add(date);
+        EventLog.getInstance().logEvent(new Event("Added a match on " + date + " of Team " + teamName));
     }
 
     //EFFECTS: bring recorded match with a selected date
@@ -49,6 +50,7 @@ public class Team {
 
     //EFFECTS: find all matches that booking is true, add them to a string and return the string
     public String allBookedMatch() {
+        EventLog.getInstance().logEvent(new Event("Checked all booked matches of Team " + teamName));
         StringBuilder string = new StringBuilder();
         for (Match i : matchList.getMatchList()) {
             if (i.isBooking()) {
@@ -61,6 +63,7 @@ public class Team {
     //REQUIRES: user inputs must be without any spaces
     // EFFECTS: get user input of a data, find match with given data, and display the match's info if exists
     public String checkMatch(String date) {
+        EventLog.getInstance().logEvent(new Event("Checked match on " + date + " of Team " + teamName));
         if (recordedMatch(date) == -1) {
             return "There is no match on the selected date";
         } else {
@@ -73,6 +76,7 @@ public class Team {
         }
     }
 
+    //EFFECTS: count number of booked matches in the team
     public int countBooking() {
         int count = 0;
         for (Match i : matchList.getMatchList()) {
