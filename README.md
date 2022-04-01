@@ -32,3 +32,15 @@
 - As a user, I want to be able to list all the booked matches on the team
 - As a user, I want to be able to save my teams and matches to file
 - As a user, I want to be able to load my teams and matches from file even after quit the program and re-execute it
+
+###Phase 4: Task 2
+
+- Example: Adding Match to Team
+  Thu Mar 31 17:29:34 PDT 2022
+  Added a match on 2022-01-05 of Team B
+- Example: Adding Team to TeamList
+  Thu Mar 31 17:29:34 PDT 2022
+  Added a Team B
+- Example: Checking Match added to Team
+  Thu Mar 31 17:30:10 PDT 2022
+  Checked match on 2022-03-05 of Team B

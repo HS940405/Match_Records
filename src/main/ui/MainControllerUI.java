@@ -224,6 +224,7 @@ public class MainControllerUI extends JFrame {
         //EFFECTS: go to the first set of MainControllerUI
         @Override
         public void actionPerformed(ActionEvent evt) {
+            teamController.saveTeamList();
             dispose(evt);
             new MainControllerUI();
         }
